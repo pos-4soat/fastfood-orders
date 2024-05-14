@@ -15,25 +15,28 @@ spec:
         - name: fastfood-orders-api
           image: 339713094046.dkr.ecr.us-east-1.amazonaws.com/ecr-fastfood_orders
           ports:
-            - containerPort: 8080
+            - containerPort: 80
           livenessProbe:
             httpGet:
               path: /health/live
-              port: 8080
+              port: 80
             initialDelaySeconds: 20
             periodSeconds: 10
             timeoutSeconds: 5
           readinessProbe:
             httpGet:
               path: /health/ready
-              port: 8080
+              port: 80
             initialDelaySeconds: 20
             periodSeconds: 10
             timeoutSeconds: 5
           resources:
+            limits:
+              cpu: 0.5
+              memory: 400Mi
             requests:
-              cpu: "500m"
-              memory: "500Mi"
+              cpu: 0.2
+              memory: 128Mi 
           env:
           - name: ConnectionStrings__SqlServerConnection
             valueFrom:
