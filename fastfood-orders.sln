@@ -1,0 +1,80 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5D7A6A12-D130-4D23-8C61-7DAB30180B07}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{16DE625A-6154-4822-9704-76300B684288}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fastfood-orders.Infra.SqlServer", "src\Infrastructure\fastfood-orders.Infra.SqlServer\fastfood-orders.Infra.SqlServer.csproj", "{15DB4EAC-56BF-4360-95BF-32A591D0AA9B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fastfood-orders.Infra.IoC", "src\Infrastructure\fastfood-orders.Infra.IoC\fastfood-orders.Infra.IoC.csproj", "{9CB5564F-38BA-46A1-B3D3-EFD5E68F246B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{5A05F762-0C04-47A7-9C34-352C8DD28CA9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fastfood-orders.API", "src\fastfood-orders.API\fastfood-orders.API.csproj", "{278C296C-49CF-490E-BCD8-983502B6FEED}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fastfood-orders.Domain", "src\Core\fastfood-orders.Domain\fastfood-orders.Domain.csproj", "{0EF3B3D8-38C4-492B-9C68-00A66DC0D110}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fastfood-orders.Application", "src\Core\fastfood-orders.Application\fastfood-orders.Application.csproj", "{B398EA7C-9926-41BC-BFEB-B52F81C512DD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fastfood-orders.Infra.Http", "src\Infrastructure\fastfood-orders.Infra.HttpClient\fastfood-orders.Infra.Http.csproj", "{20DA0F93-9E7B-4751-A942-8B7F755A253D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{5225510D-A230-4274-B895-0DBCA196B456}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fastfood-orders.Tests", "tests\fastfood-orders.Tests\fastfood-orders.Tests.csproj", "{C50BE3E0-D43E-4DC6-9C66-B8C353B4175A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{15DB4EAC-56BF-4360-95BF-32A591D0AA9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15DB4EAC-56BF-4360-95BF-32A591D0AA9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15DB4EAC-56BF-4360-95BF-32A591D0AA9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15DB4EAC-56BF-4360-95BF-32A591D0AA9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CB5564F-38BA-46A1-B3D3-EFD5E68F246B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CB5564F-38BA-46A1-B3D3-EFD5E68F246B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CB5564F-38BA-46A1-B3D3-EFD5E68F246B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CB5564F-38BA-46A1-B3D3-EFD5E68F246B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{278C296C-49CF-490E-BCD8-983502B6FEED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{278C296C-49CF-490E-BCD8-983502B6FEED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{278C296C-49CF-490E-BCD8-983502B6FEED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{278C296C-49CF-490E-BCD8-983502B6FEED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EF3B3D8-38C4-492B-9C68-00A66DC0D110}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EF3B3D8-38C4-492B-9C68-00A66DC0D110}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EF3B3D8-38C4-492B-9C68-00A66DC0D110}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EF3B3D8-38C4-492B-9C68-00A66DC0D110}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B398EA7C-9926-41BC-BFEB-B52F81C512DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B398EA7C-9926-41BC-BFEB-B52F81C512DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B398EA7C-9926-41BC-BFEB-B52F81C512DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B398EA7C-9926-41BC-BFEB-B52F81C512DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20DA0F93-9E7B-4751-A942-8B7F755A253D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20DA0F93-9E7B-4751-A942-8B7F755A253D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20DA0F93-9E7B-4751-A942-8B7F755A253D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20DA0F93-9E7B-4751-A942-8B7F755A253D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C50BE3E0-D43E-4DC6-9C66-B8C353B4175A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C50BE3E0-D43E-4DC6-9C66-B8C353B4175A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C50BE3E0-D43E-4DC6-9C66-B8C353B4175A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C50BE3E0-D43E-4DC6-9C66-B8C353B4175A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{16DE625A-6154-4822-9704-76300B684288} = {5D7A6A12-D130-4D23-8C61-7DAB30180B07}
+		{15DB4EAC-56BF-4360-95BF-32A591D0AA9B} = {16DE625A-6154-4822-9704-76300B684288}
+		{9CB5564F-38BA-46A1-B3D3-EFD5E68F246B} = {16DE625A-6154-4822-9704-76300B684288}
+		{5A05F762-0C04-47A7-9C34-352C8DD28CA9} = {5D7A6A12-D130-4D23-8C61-7DAB30180B07}
+		{278C296C-49CF-490E-BCD8-983502B6FEED} = {5D7A6A12-D130-4D23-8C61-7DAB30180B07}
+		{0EF3B3D8-38C4-492B-9C68-00A66DC0D110} = {5A05F762-0C04-47A7-9C34-352C8DD28CA9}
+		{B398EA7C-9926-41BC-BFEB-B52F81C512DD} = {5A05F762-0C04-47A7-9C34-352C8DD28CA9}
+		{20DA0F93-9E7B-4751-A942-8B7F755A253D} = {16DE625A-6154-4822-9704-76300B684288}
+		{C50BE3E0-D43E-4DC6-9C66-B8C353B4175A} = {5225510D-A230-4274-B895-0DBCA196B456}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A081F3E5-569B-426A-9CF0-5FFD5DA80490}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>fastfood_orders.Infra.Http</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\fastfood-orders.Application\fastfood-orders.Application.csproj" />
+    <ProjectReference Include="..\..\Core\fastfood-orders.Domain\fastfood-orders.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastfood-orders-api
+  labels:
+    app: fastfood-orders-api
+spec:
+  template:
+    metadata:
+      name: fastfood-orders-api
+      labels:
+        app: fastfood-orders-api
+    spec:
+      containers:
+        - name: fastfood-orders-api
+          image: 339713094046.dkr.ecr.us-east-1.amazonaws.com/ecr-fastfood_orders
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /health/live
+              port: 8080
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: 8080
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            timeoutSeconds: 5
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "500Mi"
+          env:
+          - name: ConnectionStrings__SqlServerConnection
+            valueFrom:
+              secretKeyRef:
+                name: fastfood-orders-secret
+                key: ConnectionStrings__SqlServerConnection
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fastfood-orders-api
