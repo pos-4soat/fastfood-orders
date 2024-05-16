@@ -14,8 +14,8 @@ public class GetPendingOrdersHandler : IRequestHandler<GetPendingOrdersRequest, 
     private readonly IProductHttpClient _httpClient;
 
     public GetPendingOrdersHandler(
-        IOrderRepository orderRepository,
         IMapper mapper,
+        IOrderRepository orderRepository,
         IProductHttpClient httpClient)
     {
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));

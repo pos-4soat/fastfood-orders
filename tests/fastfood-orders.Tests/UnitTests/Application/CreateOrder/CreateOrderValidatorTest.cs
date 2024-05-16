@@ -1,9 +1,4 @@
 ﻿using fastfood_orders.Application.UseCases.CreateOrder;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace fastfood_orders.Tests.UnitTests.Application.CreateOrder;
 
@@ -20,11 +15,11 @@ public class CreateOrderValidatorTest : TestFixture
     [Test]
     public void ShouldValidateRequirement()
     {
-        var request = _modelFakerFactory.GenerateRequest<CreateOrderRequest>();
+        CreateOrderRequest request = _modelFakerFactory.GenerateRequest<CreateOrderRequest>();
 
         request.OrderedItems.Clear();
 
-        var result = _validator.Validate(request);
+        FluentValidation.Results.ValidationResult result = _validator.Validate(request);
 
         AssertExtensions.AssertValidation(result, "OBE005");
     }
@@ -32,11 +27,11 @@ public class CreateOrderValidatorTest : TestFixture
     [Test]
     public void ShouldValidateUserRequirement()
     {
-        var request = _modelFakerFactory.GenerateRequest<CreateOrderRequest>();
+        CreateOrderRequest request = _modelFakerFactory.GenerateRequest<CreateOrderRequest>();
 
         request.UserId = null;
 
-        var result = _validator.Validate(request);
+        FluentValidation.Results.ValidationResult result = _validator.Validate(request);
 
         AssertExtensions.AssertValidation(result, "OBE008");
     }
@@ -44,11 +39,11 @@ public class CreateOrderValidatorTest : TestFixture
     [Test]
     public void ShouldValidateUserCpf()
     {
-        var request = _modelFakerFactory.GenerateRequest<CreateOrderRequest>();
+        CreateOrderRequest request = _modelFakerFactory.GenerateRequest<CreateOrderRequest>();
 
         request.UserId = "12345678908qwret";
 
-        var result = _validator.Validate(request);
+        FluentValidation.Results.ValidationResult result = _validator.Validate(request);
 
         AssertExtensions.AssertValidation(result, "OBE009");
     }
@@ -56,11 +51,11 @@ public class CreateOrderValidatorTest : TestFixture
     [Test]
     public void ShouldValidateProductIdRequirement()
     {
-        var request = _modelFakerFactory.GenerateRequest<CreateOrderRequest>();
+        CreateOrderRequest request = _modelFakerFactory.GenerateRequest<CreateOrderRequest>();
 
         request.OrderedItems.Add(new OrderItens());
 
-        var result = _validator.Validate(request);
+        FluentValidation.Results.ValidationResult result = _validator.Validate(request);
 
         AssertExtensions.AssertValidation(result, "OBE006");
     }
@@ -68,11 +63,11 @@ public class CreateOrderValidatorTest : TestFixture
     [Test]
     public void ShouldValidateQuantityRequirement()
     {
-        var request = _modelFakerFactory.GenerateRequest<CreateOrderRequest>();
+        CreateOrderRequest request = _modelFakerFactory.GenerateRequest<CreateOrderRequest>();
 
-        request.OrderedItems.Add(new OrderItens() { ProductId = 1, Quantity = 0});
+        request.OrderedItems.Add(new OrderItens() { ProductId = 1, Quantity = 0 });
 
-        var result = _validator.Validate(request);
+        FluentValidation.Results.ValidationResult result = _validator.Validate(request);
 
         AssertExtensions.AssertValidation(result, "OBE007");
     }

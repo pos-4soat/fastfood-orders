@@ -3,12 +3,7 @@ using fastfood_orders.Application.UseCases.CreateOrder;
 using fastfood_orders.Domain.Enum;
 using fastfood_orders.Domain.Models.Response;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace fastfood_orders.Tests.UnitTests.Application.CreateOrder;
 

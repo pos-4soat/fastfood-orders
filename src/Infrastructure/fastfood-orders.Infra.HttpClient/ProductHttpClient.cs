@@ -1,9 +1,11 @@
 ﻿using fastfood_orders.Domain.Contracts.Http;
 using fastfood_orders.Domain.Models.Response;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http.Json;
 
 namespace fastfood_orders.Infra.Http;
 
+[ExcludeFromCodeCoverage]
 public class ProductHttpClient : HttpClient, IProductHttpClient
 {
     public ProductHttpClient(string baseAddress)

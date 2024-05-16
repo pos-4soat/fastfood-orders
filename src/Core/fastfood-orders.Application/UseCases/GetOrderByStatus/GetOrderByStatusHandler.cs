@@ -13,8 +13,8 @@ public class GetOrderByStatusHandler : IRequestHandler<GetOrderByStatusRequest, 
     private readonly IMapper _mapper;
     private readonly IProductHttpClient _httpClient;
     public GetOrderByStatusHandler(
-    IOrderRepository orderRepository,
         IMapper mapper,
+        IOrderRepository orderRepository,
         IProductHttpClient httpClient)
     {
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));

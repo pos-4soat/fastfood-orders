@@ -1,9 +1,11 @@
 ﻿using fastfood_orders.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Diagnostics.CodeAnalysis;
 
 namespace fastfood_orders.Infra.SqlServer.Configuration;
 
+[ExcludeFromCodeCoverage]
 public class OrderConfiguration : IEntityTypeConfiguration<OrderEntity>
 {
     public void Configure(EntityTypeBuilder<OrderEntity> builder)

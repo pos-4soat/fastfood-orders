@@ -1,8 +1,10 @@
 ﻿using fastfood_orders.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.CodeAnalysis;
 
 namespace fastfood_orders.Infra.SqlServer.Context;
 
+[ExcludeFromCodeCoverage]
 public class ApplicationDbContext : DbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)

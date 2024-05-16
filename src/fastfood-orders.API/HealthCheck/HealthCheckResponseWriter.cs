@@ -1,14 +1,16 @@
 ﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Mime;
 using System.Text.Json;
 
 namespace fastfood_orders.API.HealthCheck;
 
+[ExcludeFromCodeCoverage]
 public static class HealthCheckResponseWriter
 {
     public static async Task Write(HttpContext context, HealthReport report)
     {
-        var result = JsonSerializer.Serialize(
+        string result = JsonSerializer.Serialize(
             new
             {
                 statusApplication = report.Status.ToString(),

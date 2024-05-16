@@ -30,11 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UnitTests\Controller\" />
-    <Folder Include="UnitTests\Repository\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\src\Core\fastfood-orders.Application\fastfood-orders.Application.csproj" />
     <ProjectReference Include="..\..\src\fastfood-orders.API\fastfood-orders.API.csproj" />
   </ItemGroup>
