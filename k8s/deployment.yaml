@@ -43,6 +43,11 @@ spec:
               secretKeyRef:
                 name: fastfood-orders-secret
                 key: ConnectionStrings__SqlServerConnection
+          - name: Http__Product
+            valueFrom:
+              secretKeyRef:
+                name: fastfood-orders-secret
+                key: Http__Product
   replicas: 1
   selector:
     matchLabels:
