@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Core\fastfood-orders.Application\fastfood-orders.Application.csproj" />
     <ProjectReference Include="..\fastfood-orders.Infra.HttpClient\fastfood-orders.Infra.Http.csproj" />
+    <ProjectReference Include="..\fastfood-orders.Infra.RabbitMq\fastfood-orders.Infra.RabbitMq.csproj" />
     <ProjectReference Include="..\fastfood-orders.Infra.SqlServer\fastfood-orders.Infra.SqlServer.csproj" />
   </ItemGroup>
 

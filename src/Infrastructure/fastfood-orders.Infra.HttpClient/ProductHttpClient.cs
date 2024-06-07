@@ -5,7 +5,6 @@ using System.Net.Http.Json;
 
 namespace fastfood_orders.Infra.Http;
 
-[ExcludeFromCodeCoverage]
 public class ProductHttpClient : HttpClient, IProductHttpClient
 {
     public ProductHttpClient(string baseAddress)
@@ -20,8 +19,15 @@ public class ProductHttpClient : HttpClient, IProductHttpClient
         if (!response.IsSuccessStatusCode)
             return null;
 
-        ProductResponse? responseObj = await response.Content.ReadFromJsonAsync<ProductResponse>(cancellationToken);
+        try
+        {
+            ProductResponse? responseObj = await response.Content.ReadFromJsonAsync<ProductResponse>(cancellationToken);
 
-        return responseObj.body;
+            return responseObj.body;
+        }
+        catch (Exception)
+        {
+            return null;
+        }
     }
 }
