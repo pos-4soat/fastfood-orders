@@ -15,7 +15,7 @@ namespace fastfood_orders.Domain.Entity
 
         public bool ValidStatus(OrderStatus orderStatus)
         {
-            return !NewStatusIsLowerOrEqualCurrentStatus() && !NewStatusIsSkippingSteps();
+            return orderStatus == OrderStatus.Canceled || (!NewStatusIsLowerOrEqualCurrentStatus() && !NewStatusIsSkippingSteps());
             bool NewStatusIsLowerOrEqualCurrentStatus()
             => orderStatus <= Status;
 

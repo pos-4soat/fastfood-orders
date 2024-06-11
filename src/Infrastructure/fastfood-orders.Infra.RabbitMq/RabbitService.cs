@@ -1,7 +1,10 @@
-﻿using fastfood_orders.Domain.Contracts.RabbitMq;
+﻿using fastfood_orders.Application.UseCases.UpdateOrder;
+using fastfood_orders.Domain.Contracts.RabbitMq;
 using fastfood_orders.Domain.Entity;
 using fastfood_orders.Infra.RabbitMq.Message;
 using fastfood_orders.Infra.RabbitMq.Settings;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
@@ -13,16 +16,18 @@ using System.Text.Json;
 namespace fastfood_orders.Infra.RabbitMq;
 
 [ExcludeFromCodeCoverage]
-public class ProducerService : IProducerService, IDisposable
+public class RabbitService : IRabbitService, IDisposable
 {
     private readonly RabbitMqSettings _settings;
     private IConnection _connection;
     private IModel _channel;
+    private readonly IServiceScopeFactory _serviceScopeFactory;
     private readonly ConcurrentDictionary<string, TaskCompletionSource<string>> _callbackMapper = new ConcurrentDictionary<string, TaskCompletionSource<string>>();
 
-    public ProducerService(IOptions<RabbitMqSettings> options)
+    public RabbitService(IOptions<RabbitMqSettings> options, IServiceScopeFactory serviceScopeFactory)
     {
         _settings = options.Value;
+        _serviceScopeFactory = serviceScopeFactory;
         InitializeRabbitMQ();
     }
 
@@ -37,13 +42,20 @@ public class ProducerService : IProducerService, IDisposable
 
         _connection = factory.CreateConnection();
         _channel = _connection.CreateModel();
-        _channel.QueueDeclare(queue: _settings.QueueName,
+
+        _channel.QueueDeclare(queue: _settings.ReplyQueueName,
                               durable: true,
                               exclusive: false,
                               autoDelete: false,
                               arguments: null);
 
-        _channel.QueueDeclare(queue: _settings.ReplyQueueName,
+        _channel.QueueDeclare(queue: _settings.OrderQueueName,
+                              durable: true,
+                              exclusive: false,
+                              autoDelete: false,
+                              arguments: null);
+
+        _channel.QueueDeclare(queue: _settings.PaymentQueueName,
                               durable: true,
                               exclusive: false,
                               autoDelete: false,
@@ -66,6 +78,37 @@ public class ProducerService : IProducerService, IDisposable
             autoAck: true);
     }
 
+    public void StartConsuming()
+    {
+        EventingBasicConsumer consumer = new EventingBasicConsumer(_channel);
+        consumer.Received += (model, ea) =>
+        {
+            byte[] body = ea.Body.ToArray();
+            string message = Encoding.UTF8.GetString(body);
+            ProcessMessage(message);
+
+            _channel.BasicAck(ea.DeliveryTag, false);
+        };
+
+        _channel.BasicConsume(queue: _settings.OrderQueueName,
+                             autoAck: false,
+                             consumer: consumer);
+    }
+
+    private void ProcessMessage(string message)
+    {
+        var request = JsonSerializer.Deserialize<UpdateOrderRequest>(message);
+
+        if (request == null)
+            return;
+
+        using (var scope = _serviceScopeFactory.CreateScope())
+        {
+            var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
+            var response = mediator.Send(request, default).Result;
+        }
+    }
+
     public Task<string> Publish(OrderEntity orderEntity)
     {
         TaskCompletionSource<string> tcs = new TaskCompletionSource<string>();
@@ -82,7 +125,7 @@ public class ProducerService : IProducerService, IDisposable
         properties.CorrelationId = correlationId;
 
         _channel.BasicPublish(exchange: string.Empty,
-                             routingKey: _settings.QueueName,
+                             routingKey: _settings.PaymentQueueName,
                              basicProperties: properties,
                              body: body);
 

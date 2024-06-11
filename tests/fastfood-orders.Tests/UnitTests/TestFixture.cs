@@ -69,7 +69,7 @@ public abstract class TestFixture
     {
         _repositoryMock = GetCustomMock<IOrderRepository, OrderRepositoryMock>();
         _httpClientMock = GetCustomMock<IProductHttpClient, ProductHttpClientMock>();
-        _rabbitMock = GetCustomMock<IProducerService, ProducerServiceMock>();
+        _rabbitMock = GetCustomMock<IRabbitService, ProducerServiceMock>();
     }
 
     private void CreateMapper()

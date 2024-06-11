@@ -14,12 +14,12 @@ namespace fastfood_orders.Application.UseCases.CreateOrder
         IMapper mapper,
         IOrderRepository orderRepository,
         IProductHttpClient httpClient,
-        IProducerService producer) : IRequestHandler<CreateOrderRequest, Result<CreateOrderResponse>>
+        IRabbitService producer) : IRequestHandler<CreateOrderRequest, Result<CreateOrderResponse>>
     {
         private readonly IOrderRepository _orderRepository = orderRepository ?? throw new ArgumentNullException(nameof(orderRepository));
         private readonly IMapper _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         private readonly IProductHttpClient _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
-        private readonly IProducerService _producer = producer ?? throw new ArgumentNullException(nameof(producer));
+        private readonly IRabbitService _producer = producer ?? throw new ArgumentNullException(nameof(producer));
 
         public async Task<Result<CreateOrderResponse>> Handle(CreateOrderRequest request, CancellationToken cancellationToken)
         {

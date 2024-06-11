@@ -60,7 +60,7 @@ public static class DependencyInjection
     private static void ConfigureServices(this IServiceCollection services)
     {
         services.AddScoped<IOrderRepository, OrderRepository>();
-        services.AddSingleton<IProducerService, ProducerService>();
+        services.AddSingleton<IRabbitService, RabbitService>();
     }
 
     private static void ConfigureHttpClient(this IServiceCollection services, IConfiguration configuration)

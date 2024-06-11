@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace fastfood_orders.Tests.Mocks;
 
-public class ProducerServiceMock(TestFixture testFixture) : BaseCustomMock<IProducerService>(testFixture)
+public class ProducerServiceMock(TestFixture testFixture) : BaseCustomMock<IRabbitService>(testFixture)
 {
     public void SetupPublish(string expectedReturn)
         => Setup(x => x.Publish(It.IsAny<OrderEntity>()))

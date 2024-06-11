@@ -2,7 +2,9 @@
 
 namespace fastfood_orders.Domain.Contracts.RabbitMq;
 
-public interface IProducerService
+public interface IRabbitService
 {
     Task<string> Publish(OrderEntity orderEntity);
+    void StartConsuming();
+    void Dispose();
 }

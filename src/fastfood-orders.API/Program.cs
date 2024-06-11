@@ -2,6 +2,7 @@
 using fastfood_orders.API.HealthCheck;
 using fastfood_orders.API.Middleware;
 using fastfood_orders.Application.Shared.Behavior;
+using fastfood_orders.Application.UseCases.Consumer;
 using fastfood_orders.Infra.IoC;
 using fastfood_orders.Infra.SqlServer.Context;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -76,6 +77,8 @@ services
 
 
 services.RegisterServices(configuration);
+
+services.AddHostedService<RabbitMQConsumerService>();
 
 WebApplication app = builder.Build();
 
