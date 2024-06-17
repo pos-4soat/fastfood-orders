@@ -20,6 +20,7 @@
             { "OBE012", "O id pedido precisa ser maior que zero." },
             { "OBE013", "O status do pedido é inválido." },
             { "OBE014", "Novo status do pedido inválido." },
+            { "OBE015", "Falha na criação do pedido, favor tente novamente." },
             { "OIE999", "Internal server error" }
         };
     }

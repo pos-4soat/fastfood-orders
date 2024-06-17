@@ -1,7 +1,10 @@
 ﻿using fastfood_orders.Application.Shared.BaseResponse;
 using fastfood_orders.Domain.Contracts.Http;
+using fastfood_orders.Domain.Contracts.RabbitMq;
 using fastfood_orders.Domain.Contracts.Repository;
 using fastfood_orders.Infra.Http;
+using fastfood_orders.Infra.RabbitMq;
+using fastfood_orders.Infra.RabbitMq.Settings;
 using fastfood_orders.Infra.SqlServer.Context;
 using fastfood_orders.Infra.SqlServer.Repository;
 using FluentValidation;
@@ -21,6 +24,7 @@ public static class DependencyInjection
     public static void RegisterServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.ConfigureBehavior();
+        services.ConfigureSettings(configuration);
         services.ConfigureServices();
         services.ConfigureAutomapper();
         services.ConfigureMediatr();
@@ -56,6 +60,7 @@ public static class DependencyInjection
     private static void ConfigureServices(this IServiceCollection services)
     {
         services.AddScoped<IOrderRepository, OrderRepository>();
+        services.AddSingleton<IRabbitService, RabbitService>();
     }
 
     private static void ConfigureHttpClient(this IServiceCollection services, IConfiguration configuration)
@@ -68,6 +73,11 @@ public static class DependencyInjection
             string? baseAddress = baseUrl;
             return new ProductHttpClient(baseAddress);
         });
+    }
+
+    private static void ConfigureSettings(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.Configure<RabbitMqSettings>(configuration.GetSection("RabbitMq"));
     }
 
     private static void ConfigureDatabase(this IServiceCollection services, IConfiguration configuration)
