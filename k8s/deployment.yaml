@@ -48,6 +48,36 @@ spec:
               secretKeyRef:
                 name: fastfood-orders-secret
                 key: Http__Product
+          - name: RabbitMQ__HostName
+            valueFrom:
+              secretKeyRef:
+                name: fastfood-orders-secret
+                key: RabbitMQ__HostName
+          - name: RabbitMQ__UserName
+            valueFrom:
+              secretKeyRef:
+                name: fastfood-orders-secret
+                key: RabbitMQ__UserName
+          - name: RabbitMQ__Password
+            valueFrom:
+              secretKeyRef:
+                name: fastfood-orders-secret
+                key: RabbitMQ__Password
+          - name: RabbitMQ__PaymentQueueName
+            valueFrom:
+              secretKeyRef:
+                name: fastfood-orders-secret
+                key: RabbitMQ__PaymentQueueName
+          - name: RabbitMQ__ReplyQueueName
+            valueFrom:
+              secretKeyRef:
+                name: fastfood-orders-secret
+                key: RabbitMQ__ReplyQueueName
+          - name: RabbitMQ__OrderQueueName
+            valueFrom:
+              secretKeyRef:
+                name: fastfood-orders-secret
+                key: RabbitMQ__OrderQueueName
   replicas: 1
   selector:
     matchLabels:
