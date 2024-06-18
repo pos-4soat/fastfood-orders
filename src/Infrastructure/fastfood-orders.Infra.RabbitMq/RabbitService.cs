@@ -38,6 +38,7 @@ public class RabbitService : IRabbitService, IDisposable
             HostName = _settings.HostName,
             UserName = _settings.UserName,
             Password = _settings.Password,
+            Port = 5671,
             Ssl = new SslOption
             {
                 Enabled = true,
