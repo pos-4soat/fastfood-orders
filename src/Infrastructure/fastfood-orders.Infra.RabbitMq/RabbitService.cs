@@ -37,8 +37,7 @@ public class RabbitService : IRabbitService, IDisposable
         {
             HostName = _settings.HostName,
             UserName = _settings.UserName,
-            Password = _settings.Password,
-            Port = 5671
+            Password = _settings.Password
         };
 
         _connection = factory.CreateConnection();
