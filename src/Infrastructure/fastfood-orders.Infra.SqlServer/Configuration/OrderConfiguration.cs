@@ -16,6 +16,8 @@ public class OrderConfiguration : IEntityTypeConfiguration<OrderEntity>
         builder.Property(c => c.Amount).HasColumnName("Amount").HasColumnType("decimal(18, 2)");
         builder.Property(c => c.CreationDate).HasColumnName("CreationDate");
         builder.Property(c => c.Status).HasColumnName("Status");
+        builder.Property(c => c.UserId).HasColumnName("UserId");
+        builder.Ignore(c => c.Email);
 
         builder.HasMany(c => c.OrderedItems)
         .WithOne(u => u.Order)

@@ -4,6 +4,7 @@ using fastfood_orders.Application.UseCases.CreateOrder;
 using fastfood_orders.Domain.Enum;
 using fastfood_orders.Tests.UnitTests;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System.Net;
@@ -57,6 +58,7 @@ public class CreateOrderTest : TestFixture
     public async Task WhenIRequestAOrderCreation()
     {
         OrderController controller = new OrderController(_mediatorMock.Object);
+        controller.ControllerContext = _controllerContext;
 
         _result = await controller.CreateOrder(_request, default);
     }

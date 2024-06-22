@@ -25,30 +25,6 @@ public class CreateOrderValidatorTest : TestFixture
     }
 
     [Test]
-    public void ShouldValidateUserRequirement()
-    {
-        CreateOrderRequest request = _modelFakerFactory.GenerateRequest<CreateOrderRequest>();
-
-        request.UserId = null;
-
-        FluentValidation.Results.ValidationResult result = _validator.Validate(request);
-
-        AssertExtensions.AssertValidation(result, "OBE008");
-    }
-
-    [Test]
-    public void ShouldValidateUserCpf()
-    {
-        CreateOrderRequest request = _modelFakerFactory.GenerateRequest<CreateOrderRequest>();
-
-        request.UserId = "12345678908qwret";
-
-        FluentValidation.Results.ValidationResult result = _validator.Validate(request);
-
-        AssertExtensions.AssertValidation(result, "OBE009");
-    }
-
-    [Test]
     public void ShouldValidateProductIdRequirement()
     {
         CreateOrderRequest request = _modelFakerFactory.GenerateRequest<CreateOrderRequest>();
