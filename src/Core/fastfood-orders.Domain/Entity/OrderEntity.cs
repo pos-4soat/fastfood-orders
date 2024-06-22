@@ -8,6 +8,7 @@ namespace fastfood_orders.Domain.Entity
         [Key]
         public int Id { get; set; }
         public string? UserId { get; set; }
+        public string? Email { get; set; }
         public decimal? Amount { get; set; }
         public OrderStatus Status { get; set; } = OrderStatus.AwaitingPayment;
         public DateTime CreationDate { get; set; } = DateTime.UtcNow;

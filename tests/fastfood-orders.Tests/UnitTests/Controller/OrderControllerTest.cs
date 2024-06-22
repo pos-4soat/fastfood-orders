@@ -26,6 +26,7 @@ public class OrderControllerTest : TestFixture
             .ReturnsAsync(Result<CreateOrderResponse>.Success(_modelFakerFactory.GenerateRequest<CreateOrderResponse>()));
 
         OrderController service = new(_mediatorMock.Object);
+        service.ControllerContext = _controllerContext;
 
         IActionResult result = await service.CreateOrder(request, default);
 
@@ -127,6 +128,7 @@ public class OrderControllerTest : TestFixture
             .ReturnsAsync(Result<CreateOrderResponse>.Failure("OBE004"));
 
         OrderController service = new(_mediatorMock.Object);
+        service.ControllerContext = _controllerContext;
 
         IActionResult result = await service.CreateOrder(request, default);
 

@@ -93,6 +93,10 @@ app.UseSwagger().UseSwaggerUI();
 app.UseRouting();
 app.UseAuthorization();
 app.UseMiddleware<ExceptionHandlerMiddleware>();
+app.UseMiddleware<TokenMiddleware>();
+
+//app.UseAuthentication();
+//app.UseAuthorization();
 
 app.UseCors(options => options
     .AllowAnyOrigin()

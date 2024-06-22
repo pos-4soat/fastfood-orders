@@ -6,6 +6,8 @@ using fastfood_orders.Domain.Contracts.Http;
 using fastfood_orders.Domain.Contracts.RabbitMq;
 using fastfood_orders.Domain.Contracts.Repository;
 using fastfood_orders.Tests.Mocks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Moq.AutoMock;
 
@@ -20,6 +22,7 @@ public abstract class TestFixture
     protected OrderRepositoryMock _repositoryMock;
     protected ProductHttpClientMock _httpClientMock;
     protected ProducerServiceMock _rabbitMock;
+    protected ControllerContext _controllerContext;
     protected IMapper _mapper;
 
     protected ModelFakerFactory _modelFakerFactory;
@@ -70,6 +73,11 @@ public abstract class TestFixture
         _repositoryMock = GetCustomMock<IOrderRepository, OrderRepositoryMock>();
         _httpClientMock = GetCustomMock<IProductHttpClient, ProductHttpClientMock>();
         _rabbitMock = GetCustomMock<IRabbitService, ProducerServiceMock>();
+        var httpContextMock = new HttpContextMock();
+        _controllerContext = new ControllerContext
+        {
+            HttpContext = httpContextMock.Object
+        };
     }
 
     private void CreateMapper()

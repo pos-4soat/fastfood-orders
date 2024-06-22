@@ -24,6 +24,8 @@ public class OrderController(IMediator _mediator) : BaseController
     [SwaggerResponse((int)HttpStatusCode.OK, "OK", typeof(Response<Result<CreateOrderResponse>>))]
     public async Task<IActionResult> CreateOrder([FromBody] CreateOrderRequest createOrderRequest, CancellationToken cancellationToken)
     {
+        createOrderRequest.UserId = (HttpContext.Items["UserId"] as string) ?? string.Empty;
+        createOrderRequest.Email = (HttpContext.Items["Email"] as string) ?? string.Empty;
         Result<CreateOrderResponse> result = await _mediator.Send(createOrderRequest, cancellationToken);
         return await GetResponseFromResult(result);
     }
