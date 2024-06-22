@@ -45,8 +45,12 @@ jobs:
       
     - name: Update README with test summary
       run: |
-        echo "\n\n## Test Summary" >> README.md
         cat code-coverage-results.md >> README.md
+        git config --global user.email "github-actions-bot@example.com"
+        git config --global user.name "GitHub Actions Bot"
+        git add README.md
+        git commit -m "Update README with test summary" --no-verify --skip-ci
+        git push origin main --no-verify --skip-ci
       
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
