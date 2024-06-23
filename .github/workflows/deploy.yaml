@@ -37,18 +37,19 @@ jobs:
       with:
         filename: 'coverage/*/coverage.cobertura.xml'
         badge: true
-        format: 'png'
-        output: 'images/CoberturaCodigo.png'
+        format: 'markdown'
+        output: 'both'
 
     - name: Write to Job Summary
       run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
       
     - name: Update README with test summary
       run: |
-        mkdir -p images
-        mv code-coverage-results.png images/CoberturaCodigo.png
-        git add images/CoberturaCodigo.png
-        git commit -m "Update code coverage image [skip ci]" --no-verify
+        sed -i '/^Test Summary/,/^$/d' README.md
+        echo "\n\nTest Summary" >> README.md
+        cat code-coverage-results.md >> README.md
+        git add README.md
+        git commit -m "Update README with test summary [skip-ci]" --no-verify
         git push origin main --no-verify
       
     - name: Configure AWS credentials
