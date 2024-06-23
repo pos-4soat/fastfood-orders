@@ -12,7 +12,7 @@ env:
 jobs:
   
   build:
-    
+    if: "!contains(github.event.commits[0].message, '[skip ci]')"
     name: Deployment
     runs-on: ubuntu-latest
 
@@ -37,20 +37,19 @@ jobs:
       with:
         filename: 'coverage/*/coverage.cobertura.xml'
         badge: true
-        format: 'markdown'
-        output: 'both'
+        format: 'png'
+        output: 'images/CoberturaCodigo.png'
 
     - name: Write to Job Summary
       run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
       
     - name: Update README with test summary
       run: |
-        cat code-coverage-results.md >> README.md
-        git config --global user.email "github-actions-bot@example.com"
-        git config --global user.name "GitHub Actions Bot"
-        git add README.md
-        git commit -m "Update README with test summary" --no-verify --skip-ci
-        git push origin main --no-verify --skip-ci
+        mkdir -p images
+        mv code-coverage-results.png images/CoberturaCodigo.png
+        git add images/CoberturaCodigo.png
+        git commit -m "Update code coverage image [skip ci]" --no-verify
+        git push origin main --no-verify
       
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
