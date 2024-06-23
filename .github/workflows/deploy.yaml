@@ -43,15 +43,6 @@ jobs:
     - name: Write to Job Summary
       run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
       
-    - name: Update README with test summary
-      run: |
-        sed -i '/^Test Summary/,/^$/d' README.md
-        echo "\n\nTest Summary" >> README.md
-        cat code-coverage-results.md >> README.md
-        git add README.md
-        git commit -m "Update README with test summary [skip-ci]" --no-verify
-        git push origin main --no-verify
-      
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
