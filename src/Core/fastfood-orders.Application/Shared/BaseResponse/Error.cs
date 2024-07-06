@@ -6,9 +6,7 @@ namespace fastfood_orders.Application.Shared.BaseResponse;
 /// <param name="Message"> Mensagens de erro. </param>
 public sealed record Error(string ErrorCode, string Message)
 {
-    public Error(string errorCode) : this(errorCode, ErrorMessages.ErrorMessageList[errorCode])
+    public Error(string errorCode) : this(errorCode, ErrorMessages.ErrorMessageList.TryGetValue(errorCode, out string message) ? message : ErrorMessages.ErrorMessageList["OIE999"])
     {
-        if (string.IsNullOrEmpty(Message))
-            Message = ErrorMessages.ErrorMessageList["OIE999"];
     }
 }
