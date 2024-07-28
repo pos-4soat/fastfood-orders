@@ -16,6 +16,7 @@ Fluxo:
 * RUN 1 do terraform
 * Workflow do [Produto](https://github.com/pos-4soat/fastfood-products?tab=readme-ov-file)
 * Atualizar secret com uri do loadbalancer de produtos
+* Atualizar secret com host de rabbitmq
 * Workflow para realizar o deploy da imagem no ECR
 
 ## Execução do projeto
